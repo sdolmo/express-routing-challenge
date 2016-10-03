@@ -6,18 +6,16 @@ app.get("/", function(req, res){
 });
 
 app.get("/speak/:animal", function(req, res){
-  var animal = req.params.animal;
-  console.log(animal);
-  switch(animal){
-    case "pig":
-    res.send("The " + animal + " says 'Oink'");
-    break;
-    case "cow":
-    res.send("The " + animal + " says 'Moo'");
-    break;
-    case "dog":
-    res.send("The " + animal + " says 'Woof Woof!'");
+  var sounds = {
+    pig: "Oink",
+    dog: "Woof, Woof!",
+    cat: "I hate you human",
+    fish: "...",
+    cow: "Moo"
   }
+  var animal = req.params.animal.toLowerCase();
+  var sound = sounds[animal];
+  res.send("The " + animal + " says '" + sound + "'");
 });
 
 app.get("/repeat/:print/:num", function(req, res){
